@@ -31,9 +31,9 @@ int lvl1[20][25] =
 
 Map::Map ()
 {
-	dirt = TextureManager::loadTexture("../assets/images/dirt.png");
-	grass = TextureManager::loadTexture("../assets/images/grass.png");
-	water = TextureManager::loadTexture("../assets/images/water.png");
+	dirt = TextureManager::loadTexture("../src/assets/images/dirt.png");
+	grass = TextureManager::loadTexture("../src/assets/images/grass.png");
+	water = TextureManager::loadTexture("../src/assets/images/water.png");
 
 	loadMap(lvl1);
 
@@ -44,6 +44,9 @@ Map::Map ()
 }
 Map::~Map ()
 {
+	SDL_DestroyTexture(dirt);
+	SDL_DestroyTexture(grass);
+	SDL_DestroyTexture(water);
 
 }
 void Map::loadMap (int arr[20][25])

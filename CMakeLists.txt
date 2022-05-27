@@ -18,7 +18,7 @@ include_directories(${SDL2_IMAGE_INCLUDE_DIR})
 link_directories(${SDL2_IMAGE_LIB_DIR})
 
 
-add_executable(test_sdl main.cpp old_prog/RenderWindow.h old_prog/RenderWindow.cpp old_prog/Entity.h old_prog/Entity.cpp includes/Math.h includes/Math.cpp includes/Utils.h ErrorHandler.h includes/Utils.cpp ErrorHandler.cpp Game.cpp Game.h TextureManager.h TextureManager.cpp GameObject.cpp GameObject.h Map.cpp Map.h ECS.cpp ECS.h Components.h)
+add_executable(test_sdl src/main.cpp old_prog/RenderWindow.h old_prog/RenderWindow.cpp old_prog/Entity.h old_prog/Entity.cpp includes/Math.h includes/Math.cpp includes/Utils.h src/ErrorHandler.h includes/Utils.cpp src/ErrorHandler.cpp src/Game.cpp src/Game.h src/TextureManager.h src/TextureManager.cpp old_prog/gameobj_handling/GameObject.cpp old_prog/gameobj_handling/GameObject.h src/Map.cpp src/Map.h src/ECS/ECS.h src/ECS/Components.h src/ECS/SpriteComponent.h src/ECS/TransformComponent.h src/Vector2D.cpp src/Vector2D.h src/ECS/KeyboardController.h src/ECS/ColliderComponent.h src/Collisiion.h)
 
 target_link_libraries(${PROJECT_NAME} SDL2main SDL2)
 target_link_libraries(${PROJECT_NAME} SDL2_image)

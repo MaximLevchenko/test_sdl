@@ -2,7 +2,7 @@
 #ifndef TEST_SDL_GAMEOBJECT_H
 #define TEST_SDL_GAMEOBJECT_H
 
-#include "Game.h"
+#include "../../src/Game.h"
 class GameObject
 {
 public:

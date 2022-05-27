@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../includes/Utils.h"
-#include "../ErrorHandler.h"
+#include "../src/ErrorHandler.h"
 #include "RenderWindow.h"
 
 using namespace std;

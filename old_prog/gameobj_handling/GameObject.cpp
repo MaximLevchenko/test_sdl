@@ -3,7 +3,7 @@
 //
 
 #include "GameObject.h"
-#include "TextureManager.h"
+#include "../../src/TextureManager.h"
 
 GameObject::~GameObject ()
 {

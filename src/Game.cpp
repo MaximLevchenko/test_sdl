@@ -1,32 +1,26 @@
 
-
-//
-// Created by User win 10 on 24.05.2022.
-//
-
-
 #include <iostream>
 #include <memory>
 
 #include "ErrorHandler.h"
 #include "Game.h"
 #include "TextureManager.h"
-#include "GameObject.h"
 #include "Map.h"
-#include "ECS.h"
-#include "Components.h"
-
-
+#include "ECS/Components.h"
+#include "Vector2D.h"
+//#include "../old_prog/gameobj_handling/GameObject.h"
 using namespace std;
 //we have instances of gameObjects which have all the functionality
-unique_ptr<GameObject> grass;
-unique_ptr<GameObject> player;
+
 unique_ptr<Map> map;
 
 SDL_Renderer *Game::renderer = nullptr;
 
+SDL_Event Game::event;
+
+
 Manager manager;
-auto & newPlayer(manager.addEntity());
+auto &player(manager.addEntity());
 
 Game::Game () {}
 Game::~Game () {}
@@ -64,18 +58,14 @@ void Game::init (const char *p_title, int p_xpos, int p_ypos, int p_w, int p_h, 
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);//setting color to white
 	//==========================================================================
 	isRunning = true;
-
-	grass = make_unique<GameObject>("../assets/images/grass.png", 0, 0);
-	player = make_unique<GameObject>("../assets/images/player.png", 40, 80);
 	map = make_unique<Map>();
-
-	newPlayer.addComponent<PositionComponent>();
-	newPlayer.getComponent<PositionComponent>().setPpos(500,500);
+	player.addComponent<TransformComponent>(0, 0);
+	player.addComponent<SpriteComponent>("../src/assets/images/player.png");
+	player.addComponent<KeyboardController>();
 
 }
 void Game::handleEvents ()
 {
-	SDL_Event event;
 	SDL_PollEvent(&event);
 	switch (event.type)
 	{
@@ -89,11 +79,9 @@ void Game::handleEvents ()
 void Game::update ()
 {
 	cnt++;
-	grass->update_tex();
-	player->update_tex();
+	manager.refresh();
 	manager.update();
-	cout<<newPlayer.getComponent<PositionComponent>().getXpos()<<",";
-	cout<<newPlayer.getComponent<PositionComponent>().getYpos()<<","<<endl;
+
 
 //	cout << cnt << endl;
 }
@@ -102,8 +90,7 @@ void Game::render ()
 	SDL_RenderClear(renderer);
 	//here we add stuff to out renderer
 	map->drawMap();
-	grass->render_tex();
-	player->render_tex();
+	manager.draw();
 
 	//and after this we display it
 	SDL_RenderPresent(renderer);

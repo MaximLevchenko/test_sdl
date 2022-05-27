@@ -55,7 +55,7 @@ public:
 	virtual void update () {}
 	virtual void draw () {}
 
-	Entity *entity;
+	Entity *entity{nullptr};//TODO: added this
 };
 
 class Entity
@@ -84,14 +84,15 @@ public:
 	T &addComponent (TArgs &&... mArgs)
 	{
 		T *c(new T(std::forward<TArgs>(mArgs)...));
+
 		c->entity = this;
 		std::unique_ptr<Component> uPtr{c};
 		components.emplace_back(std::move(uPtr));
 
 		componentArray[getComponentTypeID<T>()] = c;
 		componentBitset[getComponentTypeID<T>()] = true;
-
 		c->init();
+
 		return *c;
 	}
 
