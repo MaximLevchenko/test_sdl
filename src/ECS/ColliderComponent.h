@@ -8,6 +8,10 @@
 class ColliderComponent : public Component
 {
 public:
+	ColliderComponent (string p_tag)
+	{
+		tag = p_tag;
+	}
 	SDL_Rect collider;
 	std::string tag;//string with definition what collision have happened
 
@@ -24,8 +28,8 @@ public:
 	}
 	void update ()
 	{
-		collider.x = transform->position.x;
-		collider.y = transform->position.y;
+		collider.x = static_cast<int>(transform->position.x);
+		collider.y = static_cast<int>(transform->position.y);
 		collider.w = transform->width * transform->scale;
 		collider.h = transform->height * transform->scale;
 	}

@@ -23,10 +23,14 @@ public:
 	friend Vector2D &operator* (Vector2D &vec1, const Vector2D &vec2);
 	friend Vector2D &operator/ (Vector2D &vec1, const Vector2D &vec2);
 
-	Vector2D operator+= (const Vector2D &vec);
-	Vector2D operator-= (const Vector2D &vec);
-	Vector2D operator*= (const Vector2D &vec);
-	Vector2D operator/= (const Vector2D &vec);
+	Vector2D &operator+= (const Vector2D &vec);
+	Vector2D &operator-= (const Vector2D &vec);
+	Vector2D &operator*= (const Vector2D &vec);
+	Vector2D &operator/= (const Vector2D &vec);
+
+	Vector2D & operator*(const int& p_scale);
+	Vector2D & zero();
+
 
 	friend std::ostream & operator<<(std::ostream & stream, const Vector2D & vec);
 

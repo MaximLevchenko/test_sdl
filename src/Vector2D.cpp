@@ -51,22 +51,37 @@ Vector2D &operator/ (Vector2D &vec1, const Vector2D &vec2)
 {
 	return vec1.divide(vec2);
 }
-Vector2D Vector2D::operator+= (const Vector2D &vec)
+Vector2D &Vector2D::operator+= (const Vector2D &vec)
 {
 	return this->add(vec);
 }
-Vector2D Vector2D::operator-= (const Vector2D &vec)
+Vector2D &Vector2D::operator-= (const Vector2D &vec)
 {
 	return this->substract(vec);
 }
-Vector2D Vector2D::operator*= (const Vector2D &vec)
+Vector2D &Vector2D::operator*= (const Vector2D &vec)
 {
 	return this->multiply(vec);
 }
-Vector2D Vector2D::operator/= (const Vector2D &vec)
+Vector2D &Vector2D::operator/= (const Vector2D &vec)
 {
 	return this->divide(vec);
 }
+Vector2D &Vector2D::operator* (const int &p_scale)
+{
+	this->x *= p_scale;
+	this->y *= p_scale;
+	return *this;
+
+}
+Vector2D &Vector2D::zero ()
+{
+	this->x = 0;
+	this->y = 0;
+
+	return *this;
+}
+
 
 std::ostream &operator<< (std::ostream &stream, const Vector2D &vec)
 {

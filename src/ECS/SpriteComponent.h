@@ -7,26 +7,27 @@
 #include "SDL_image.h"
 #include "../TextureManager.h"
 
-class SpriteComponent: public Component{
+class SpriteComponent : public Component
+{
 public:
 
-	SpriteComponent() =default;
-	SpriteComponent(const char * p_filename)
+	SpriteComponent () = default;
+	SpriteComponent (const char *p_filename)
 	{
 		setTex(p_filename);
 	}
-~SpriteComponent()
-{
-	SDL_DestroyTexture(texture);
-}
+	~SpriteComponent ()
+	{
+		SDL_DestroyTexture(texture);
+	}
 
 	//if any further we wan
-	void setTex(const char* p_filename)
+	void setTex (const char *p_filename)
 	{
 		texture = TextureManager::loadTexture(p_filename);
 	}
 
-	void init()override
+	void init () override
 	{
 		transform = &entity->getComponent<TransformComponent>();//initializes position
 
@@ -36,22 +37,22 @@ public:
 
 
 	}
-	void update()override
+	void update () override
 	{
-		destRect.x = (int)transform->position.x;
-		destRect.y = (int)transform->position.y;
+		destRect.x = static_cast<int>(transform->position.x);
+		destRect.y = static_cast<int>(transform->position.y);
 		destRect.w = transform->width * transform->scale;
 		destRect.h = transform->height * transform->scale;
 
 	}
-	void draw()override
+	void draw () override
 	{
-		TextureManager::draw(texture,srcRect,destRect);
+		TextureManager::draw(texture, srcRect, destRect);
 	}
 
 private:
-	TransformComponent * transform;
-	SDL_Texture * texture;
+	TransformComponent *transform;
+	SDL_Texture *texture;
 	SDL_Rect srcRect, destRect;
 
 };
